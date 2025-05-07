@@ -64,7 +64,7 @@ const HomePage = () => {
                       className="w-16 h-16 object-cover rounded-md"
                     />
                     <div>
-                      <h4 className="text-lg font-semibold text-[#970747]">
+                      <h4 className="text-base font-semibold text-[#970747]">
                         {blog.title}
                       </h4>
                       <p className="text-gray-700 text-sm">

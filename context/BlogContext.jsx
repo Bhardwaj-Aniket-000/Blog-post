@@ -121,30 +121,6 @@ export const BlogProvider = ({ children }) => {
     newFormData.append("author", formData.author);
     newFormData.append("image", formData.image);
 
-    const userBlog = blogs.find((blog) => blog._id === blogID);
-    if (
-      (userBlog.title === formData.title &&
-        userBlog.content === formData.content &&
-        userBlog.author === formData.author,
-      userBlog.profile_url === formData.image)
-    ) {
-      console.log("request not send");
-      setAlert({
-        value: true,
-        content: `No Changes Made`,
-        bgColor: "bg-red-200",
-      });
-      setTimeout(() => {
-        setAlert({
-          value: false,
-          content: "",
-          bgColor: "",
-        });
-        navigate("/");
-      }, 2000);
-      return;
-    }
-
     setSpinner(true);
 
     fetch(`${import.meta.env.VITE_BACKEND_URL}/modifyblog/${blogID}`, {
@@ -152,7 +128,6 @@ export const BlogProvider = ({ children }) => {
       body: newFormData,
     })
       .then((res) => {
-        console.log(res);
         return res.json();
       })
       .then((res) => {
@@ -210,7 +185,7 @@ export const BlogProvider = ({ children }) => {
 
   // handleDelete...
   function handleDelete(id) {
-    setSpinner(true)
+    setSpinner(true);
     fetch(`${import.meta.env.VITE_BACKEND_URL}/deleteblog/${id}`, {
       method: "delete",
     })
